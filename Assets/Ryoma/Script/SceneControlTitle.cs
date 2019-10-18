@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using 
+using UnityEngine.SceneManagement;
+
 
 public class SceneControlTitle : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // 3.OnRetry関数が実行されたら、sceneを読み込む
+    public void OnRetry() {
+        // 「ButtonScene」を自分の読み込みたいscene名に変える
+        SceneManager.LoadScene("Main");
+    }
 }
