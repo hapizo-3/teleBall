@@ -26,10 +26,7 @@ public class menu : MonoBehaviour
         {
             if(MenuActiveFlg==true)              //メニュー表示中
             {
-                if(PScale.x<=0||PScale.y<=0)       //サイズが０以下になったら
-                {
-                    MenuPanel.SetActive(false);     //メニューけす
-                }
+                
 
                 if(PScale.x >= 0.7f || PScale.y >= 0.7f)//最大になったら
                 MenuActiveFlg = false;          //小さくできるようになる
@@ -70,10 +67,15 @@ public class menu : MonoBehaviour
 
    public void ScaleDown()
     {
-        if(PScale.x >= 0.0f || PScale.y >= 0.0f)
+        
+        if (PScale.x >= 0.0f || PScale.y >= 0.0f)
         {
             PScale.x -= 0.07f;
             PScale.y -= 0.07f;
+            if (PScale.x <= 0 || PScale.y <= 0)       //サイズが０以下になったら
+            {
+                MenuPanel.SetActive(false);     //メニューけす
+            }
             MenuPanel.transform.localScale = PScale;
         }
     }
