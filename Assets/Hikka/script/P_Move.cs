@@ -16,10 +16,10 @@ public class P_Move : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
-        this.rotateSpeed = 60.0f;
+        this.rotateSpeed = 120.0f;
         this.gravity = 10f;
         this.jumpPower = 12;
-        this.speed = 6.0f;
+        this.speed = 12.0f;
 
         this.controller = this.gameObject.GetComponent<CharacterController>();
     }
