@@ -7,6 +7,7 @@ TagManager:
   - teleBall
   - Ground
   - teleportParticle
+  - CapsuleCollision
   layers:
   - Default
   - TransparentFX
