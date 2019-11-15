@@ -26,12 +26,14 @@ public class Move_Wall : MonoBehaviour {
         Transform myTransform = this.transform.GetChild(0);
         Transform myTransformC = this.transform.GetChild(1);
 
-        if ((Button.transform.GetChild(0).GetComponent<Button>().flg == true || Button2.transform.GetChild(0).GetComponent<Button>().flg == true) && x-3f <= myTransform.position.x)
+        //ボタン二つのうち一つがtrueなら開く
+        if ((Button.transform.GetChild(0).GetComponent<Button>().flg == true || Button2.transform.GetChild(0).GetComponent<Button>().flg == true) && x-4.5f <= myTransform.position.x)
         {
             myTransform.Translate(-0.15f, 0f, 0f, Space.World);
             myTransformC.Translate(0.15f, 0f, 0f, Space.World);
         }
 
+        //ボタン二つともfalseなら閉まる
         else if (x >= myTransform.position.x && (Button.transform.GetChild(0).GetComponent<Button>().flg == false && Button2.transform.GetChild(0).GetComponent<Button>().flg == false))
         {
             myTransform.Translate(0.15f, 0f, 0f, Space.World);
