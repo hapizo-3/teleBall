@@ -11,5 +11,4 @@ public class SceneControlMain : MonoBehaviour {
         // 「ButtonScene」を自分の読み込みたいscene名に変える
         SceneManager.LoadScene("Title");
     }
-
 }

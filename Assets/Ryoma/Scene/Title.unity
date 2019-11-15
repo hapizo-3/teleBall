@@ -535,7 +535,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\u30D8\u30EB\u30D7\u3092\u8868\u793A\u3059\u308B"
 --- !u!222 &1387062417
 CanvasRenderer:
   m_ObjectHideFlags: 0
