@@ -6,21 +6,51 @@ using Const;
 public class teleBallCollision : MonoBehaviour {
 
 	public GameObject teleportParticle;
-	//public GameObject playertmp;
-	//public int frame;
 	public look lk;
+
+	float rx = 0;
+	float ry = 0;
+	float rz = 0;
 
 	void Start()
 	{
 		Rigidbody rbs = GetComponent<Rigidbody>();
-		rbs.AddForce( 0, 0.5f, 30, ForceMode.Impulse );
+
+		Transform PlayerT = GameObject.FindGameObjectWithTag( "Player" ).transform;
+		Transform CameraT = GameObject.FindGameObjectWithTag( "MainCamera" ).transform;
+
+		Vector3 PlayerR = PlayerT.eulerAngles;
+		Vector3 CameraR = CameraT.eulerAngles;
+
+		float PlayerHor = CameraR.x;
+		float PlayerVec = PlayerR.y;
+
+		if( PlayerHor >= 180 )
+		{
+			PlayerHor = PlayerHor - 360;
+		}
+
+		float radRY = PlayerHor * Const.CO.PI / 180;
+		float radRX = PlayerVec * Const.CO.PI / 180;
+
+		float radY = Mathf.Sin( radRY );
+
+		float sinX = Mathf.Sin( radRX );
+		float cosY = Mathf.Cos( radRX );
+
+		float py = 30 * radY;
+
+		float px = 30 * sinX;
+		float pz = 30 * cosY;
+
+		rbs.AddForce( px, -py, pz, ForceMode.Impulse );
 	}
 
 	void Update()
 	{
 		Rigidbody rb = GetComponent<Rigidbody>();
 
-		rb.AddForce( 0, 4, 2, ForceMode.Acceleration );
+		//rb.AddForce( 0, 4, 2, ForceMode.Acceleration );
 	}
 
 	void OnCollisionEnter( Collision other )
@@ -37,7 +67,7 @@ public class teleBallCollision : MonoBehaviour {
 
 		//回転取得のためのTransform取得
 		//Transform CameraR = GameObject.FindGameObjectWithTag( "MainCamera" ).transform;
-		//Transform PlayerR = GameObject.FindGameObjectWithTag( "Player" ).transform;
+		//Transform PlayerR = 
 		
 		//回転取得のためのVector3取得
 		//Vector3 CameraRV = CameraR.eulerAngles;
