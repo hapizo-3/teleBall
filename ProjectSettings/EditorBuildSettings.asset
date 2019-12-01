@@ -8,13 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
-    path: Assets/Ryoma/Scene/Main2.unity
-    guid: 12ef73bc3e3485b47a6ee97eb62cd642
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Ryoma/Scene/Title.unity
     guid: 481ed3e22bb008d49834f3bd30f0381a
   - enabled: 1
-    path: Assets/Ryoma/Scene/KiriRyomaKtugou.unity
+    path: Assets/Ryoma/Scene/Menu.unity
     guid: 5f2965ba1ef2cd34d96d9cc275e5e1a2
+  - enabled: 1
+    path: Assets/Ryoma/Scene/TitleTest.unity
+    guid: 3b984a755ed656f438a82fdf5fc7b9fe
   m_configObjects: {}
