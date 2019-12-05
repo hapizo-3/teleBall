@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//移動するブロックにplayerを親子付けするスクリプトです。
+
 public class RideOnOff : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//プレイヤーを動かすテストスクリプトです。
+
 public class PlayerController : MonoBehaviour {
 
     public float speed = 2.0f;
