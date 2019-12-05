@@ -17,6 +17,18 @@ public class Throw : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
         {
             this.animator.SetTrigger("ThrowTrigger");
+        }else if (Input.GetKeyDown(KeyCode.S))
+        {
+            this.animator.SetTrigger("ThrowBTrigger");
         }
-	}
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
+            this.animator.SetTrigger("ThrowLTrigger");
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            this.animator.SetTrigger("ThrowRTrigger");
+        }
+
+    }
 }
