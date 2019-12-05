@@ -8,21 +8,35 @@ public class teleBallCollision : MonoBehaviour {
 	public GameObject teleportParticle;
 	public look lk;
 
-	float rx = 0;
-	float ry = 0;
-	float rz = 0;
+	public GameObject playerObject;
+	PlayerMove pObject;
+
+	public float moveSize = 40;
 
 	void Start()
 	{
+
+		playerObject = GameObject.FindGameObjectWithTag( "Player" );
+
 		Rigidbody rbs = GetComponent<Rigidbody>();
 
 		Transform PlayerT = GameObject.FindGameObjectWithTag( "Player" ).transform;
 		Transform CameraT = GameObject.FindGameObjectWithTag( "MainCamera" ).transform;
 
+		Vector3 CameraForward = CameraT.transform.position - CameraT.transform.forward;
+		Vector3 CameraNorm = CameraT.transform.forward;
+
+		Debug.Log( CameraNorm );
+
+		CameraNorm.x *= 40;
+		CameraNorm.y *= 40;
+		CameraNorm.z *= 40;
+
 		Vector3 PlayerR = PlayerT.eulerAngles;
 		Vector3 CameraR = CameraT.eulerAngles;
 
 		float PlayerHor = CameraR.x;
+	//Debug.Log( PlayerHor );
 		float PlayerVec = PlayerR.y;
 
 		if( PlayerHor >= 180 )
@@ -36,20 +50,35 @@ public class teleBallCollision : MonoBehaviour {
 		float radY = Mathf.Sin( radRY );
 
 		float sinX = Mathf.Sin( radRX );
-		float cosY = Mathf.Cos( radRX );
+		float cosZ = Mathf.Cos( radRX );
 
-		float py = 30 * radY;
+		//絶対値取得
+		float absX = Mathf.Abs( sinX );
+		float absY = Mathf.Abs( radY );
+		float absZ = Mathf.Abs( cosZ );
 
-		float px = 30 * sinX;
-		float pz = 30 * cosY;
+		//Yの傾いている差分を求める
+		float difX = absY - absX;
+		float difZ = absY - absZ;
 
-		rbs.AddForce( px, -py, pz, ForceMode.Impulse );
+		difX = Mathf.Abs( difX );
+		difZ = Mathf.Abs( difZ );
+
+		float py = moveSize * radY;
+
+		float px = moveSize * sinX;
+		float pz = moveSize * cosZ;
+
+		//float 
+		//Debug.Log( "x/ " + sinX + "y/ " + radY + "z/ " + cosZ );
+
+		//rbs.AddForce( px, -py, pz, ForceMode.Impulse );
+		rbs.AddForce( CameraNorm.x, CameraNorm.y, CameraNorm.z, ForceMode.Impulse );
 	}
 
 	void Update()
 	{
 		Rigidbody rb = GetComponent<Rigidbody>();
-
 		//rb.AddForce( 0, 4, 2, ForceMode.Acceleration );
 	}
 
@@ -58,41 +87,15 @@ public class teleBallCollision : MonoBehaviour {
 		float x = this.gameObject.transform.position.x;
 		float y = this.gameObject.transform.position.y;
 		float z = this.gameObject.transform.position.z;
-		//float rx = other.gameObject.transform.eulerAngles.x;
-		//float ry = other.gameObject.transform.eulerAngles.y;
-		//float rz = other.gameObject.transform.eulerAngles.z;
-		//Quaternion rq = Quaternion.Euler( x, y, z );
 
 		Quaternion q = Quaternion.Euler( -90f, 0f, 0f );
 
-		//回転取得のためのTransform取得
-		//Transform CameraR = GameObject.FindGameObjectWithTag( "MainCamera" ).transform;
-		//Transform PlayerR = 
-		
-		//回転取得のためのVector3取得
-		//Vector3 CameraRV = CameraR.eulerAngles;
-		//Vector3 PlayerRV = PlayerR.eulerAngles;
-
-		//回転取得
-		//float PlayerRX = CameraRV.x;
-		//float PlayerRY = PlayerRV.y;
-
-		//弧度法変換
-		//float radRY = PlayerRY * Const.CO.PI / 180;
-		//Debug.Log( radRY );
-
-		//正弦・余弦変換
-		//float cosX = Mathf.Cos( radRY );
-		//float sinY = Mathf.Sin( radRY );
-
-		//座標取得
-		//float px = 20 * cosX /*-( Const.CO.PI / 2 )*/ ;
-		//float pz = 20 * -( sinY ) * ( Const.CO.PI / 2 );
-
 		if( other.gameObject.tag == "Ground" )
 		{
+			pObject = playerObject.GetComponent<PlayerMove>();
+			//pObject.GetTeleballPosition( x, y, z );
+
 			Instantiate( teleportParticle, new Vector3( x, y, z ), Quaternion.identity * q );
-			//Instantiate( teleportParticle, new Vector3( px, y, pz ), Quaternion.identity * q );
 			Destroy( this.gameObject );
 		}
 

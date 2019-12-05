@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class teleParticle : MonoBehaviour {
 
-	private int occureTime = 0;
+	private int occureCount = 0;
+	public int occureTime = 0;
 	
 	// Update is called once per frame
 	void Update () {
-		occureTime++;
-		if( occureTime >= 180 )
+		occureCount++;
+		if( occureCount >= occureTime )
 		{
 			Destroy( this.gameObject );
 		}
