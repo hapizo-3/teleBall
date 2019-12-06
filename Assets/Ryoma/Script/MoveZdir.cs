@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Z軸に移動するブロックスクリプトです。
+
 public class MoveZdir : MonoBehaviour {
     public float length = 4.0f;     //移動する振幅
     public float speed = 2.0f;      //移動するスピード　大きくすると早くなる

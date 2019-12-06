@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//ESCキーを入力するとメニュータブが出るスクリプトです。
+//Ps.きりさんが作成しました。
+
 public class Menu : MonoBehaviour {
 
     public AudioClip sound1;
