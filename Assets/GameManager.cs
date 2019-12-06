@@ -1,23 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
 	public GameObject teleBall;
 	public GameObject teleBallPrefab;
+    [System.NonSerialized]
+    public int currentStageNum = 0;        //現在のステージ番号（０始まり）
 
-	GameObject getCamera;
+    [SerializeField]
+    string[] stageName;     //ステージ名
+
+    GameObject getCamera;
 	look cameraPos;
 	Vector3 cameraPosF;
 
 	public bool wasLocked = false;
 
-	// Use this for initialization
+	// 最初の処理
 	void Start () {
 		//teleBallPrefab = ( GameObject )Prefab.Load( "teleBall" );
 		getCamera = GameObject.FindGameObjectWithTag( "MainCamera" );
-
+        //シーンを切り替えてもこのゲームオブジェクトを消去しないようにする
+        DontDestroyOnLoad(gameObject);
 	}
 
 	void MouseLock()
@@ -33,9 +40,9 @@ public class GameManager : MonoBehaviour {
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.None;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    //毎フレームの処理
+    void Update () {
 
 		if( wasLocked == true && ( Input.GetMouseButtonDown( 0 ) || Input.GetKeyDown( KeyCode.A ) || Input.GetKeyDown( KeyCode.S ) || Input.GetKeyDown( KeyCode.D ) ) )
 		{
@@ -57,4 +64,19 @@ public class GameManager : MonoBehaviour {
 			MouseLockCancel();
 		}
 	}
+
+    //次のステージに進む処理
+    public void NextStage() {
+        currentStageNum += 1;
+
+        //コルーチンを実行
+        StartCoroutine(WaitForLoadScene());
+    }
+
+    //シーンの読み込みと待機を行うコルーチン
+    IEnumerator WaitForLoadScene() {
+        //シーンを非同期で読込し、読み込まれるまで待機する
+        yield return
+            SceneManager.LoadSceneAsync(stageName[currentStageNum]);
+    }
 }

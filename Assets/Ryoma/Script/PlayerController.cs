@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     
+    
     public float speed = 2.0f;
 
     private Rigidbody rB;
-    
+    private GameManager gameManager;
 
     // Use this for initialization
     void Start () {
@@ -20,5 +21,9 @@ public class PlayerController : MonoBehaviour {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         rB.AddForce(x * speed, 0, z * speed, ForceMode.Impulse);
+
+        if (Input.GetKeyDown("Space")) {
+            gameManager.NextStage();
+        }
     }
 }
