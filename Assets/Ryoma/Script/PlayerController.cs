@@ -22,8 +22,5 @@ public class PlayerController : MonoBehaviour {
         float z = Input.GetAxis("Vertical");
         rB.AddForce(x * speed, 0, z * speed, ForceMode.Impulse);
 
-        if (Input.GetKeyDown("Space")) {
-            gameManager.NextStage();
-        }
     }
 }
