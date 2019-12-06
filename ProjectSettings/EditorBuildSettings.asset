@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Ryoma/Scene/Menu.unity
     guid: 5f2965ba1ef2cd34d96d9cc275e5e1a2
+  - enabled: 1
+    path: Assets/Ryoma/Scene/TitleTest.unity
+    guid: 3b984a755ed656f438a82fdf5fc7b9fe
   m_configObjects: {}
