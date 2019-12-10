@@ -7,17 +7,16 @@ public class GameManager : MonoBehaviour {
 	public GameObject teleBall;
 	public GameObject teleBallPrefab;
 
-	GameObject getCamera;
+    GameObject getCamera;
 	look cameraPos;
 	Vector3 cameraPosF;
 
 	public bool wasLocked = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		//teleBallPrefab = ( GameObject )Prefab.Load( "teleBall" );
 		getCamera = GameObject.FindGameObjectWithTag( "MainCamera" );
-
 	}
 
 	void MouseLock()
@@ -33,9 +32,9 @@ public class GameManager : MonoBehaviour {
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.None;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 
 		if( wasLocked == true && ( Input.GetMouseButtonDown( 0 ) || Input.GetKeyDown( KeyCode.A ) || Input.GetKeyDown( KeyCode.S ) || Input.GetKeyDown( KeyCode.D ) ) )
 		{
