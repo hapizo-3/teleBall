@@ -18,6 +18,8 @@ public class teleballCollisionEx : MonoBehaviour {
 
 	float throwSize;
 
+	private Vector3 beforeColPosition;
+
 	// Use this for initialization
 	void Start () {
 		//Debug.Log( "teleballStart : " + Time.frameCount );
@@ -67,13 +69,17 @@ public class teleballCollisionEx : MonoBehaviour {
 		float y = this.gameObject.transform.position.y;
 		float z = this.gameObject.transform.position.z;
 
+		beforeColPosition = new Vector3( x, y, z );
+		Debug.Log( this.gameObject.transform.position );
+		Debug.Log( other.gameObject.transform.position );
+
 		Quaternion q = Quaternion.Euler( -90f, 0f, 0f );
 
 		if( other.gameObject.tag == "Ground" )
 		{
 			pObject = playerObject.GetComponent<PlayerMove>();
 			pObject.GetTeleballPosition( x, y, z, other.gameObject );
-			pObject.DisplayCollisionObject( other.gameObject );
+			//pObject.DisplayCollisionObject( other.gameObject );
 
 			Instantiate( teleportParticle, new Vector3( x, y, z ), Quaternion.identity * q );
 			Destroy( this.gameObject );
