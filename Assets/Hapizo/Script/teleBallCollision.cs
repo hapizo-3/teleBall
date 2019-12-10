@@ -11,7 +11,7 @@ public class teleBallCollision : MonoBehaviour {
 	public GameObject playerObject;
 	PlayerMove pObject;
 
-	public float moveSize = 40;
+	public float moveSize = 5;
 
 	void Start()
 	{
