@@ -141,10 +141,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageName:
-  - Menu
+  - title
+  - stage01
+  - stage02
+  - stage03
   - stage04
-  - Title
-  - 
 --- !u!4 &88182638
 Transform:
   m_ObjectHideFlags: 0
@@ -945,7 +946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dbf2d1358481d64ca4424ab34b535eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 0}
+  panel: {fileID: 291151456}
 --- !u!114 &1255311403
 MonoBehaviour:
   m_ObjectHideFlags: 0

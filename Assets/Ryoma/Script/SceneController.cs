@@ -11,6 +11,8 @@ public class SceneController : MonoBehaviour {
     [SerializeField]
     string[] stageName; //ステージ名
 
+    private FadeController fadeController;
+
     //最初の処理
     void Start() {
         //シーンを切り替えてもこのゲームオブジェクトを削除しないようにする
@@ -19,9 +21,10 @@ public class SceneController : MonoBehaviour {
 
     //毎フレームの処理
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            NextStage();
-        }
+        //デバッグ用
+        //if (Input.GetKeyDown(KeyCode.Space)) {
+        //    NextStage();
+        //}
     }
 
     //次のステージに進む処理
