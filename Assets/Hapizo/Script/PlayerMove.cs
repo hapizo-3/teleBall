@@ -54,7 +54,14 @@ public class PlayerMove : MonoBehaviour {
 			difX = 2.0f;
 		}
 
-		difY = 2.17f;
+		if( otherObject.transform.eulerAngles.x == 180 || otherObject.transform.eulerAngles.z == 180 )
+		{
+			difY = -2.17f;
+		}
+		else if( otherObject.transform.eulerAngles.x == 0 || otherObject.transform.eulerAngles.z == 0 )
+		{
+			difY = 2.17f;
+		}
 
 		playerPosition = this.gameObject.transform.position;
 		playerPosition.x = X + difX;

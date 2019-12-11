@@ -10,8 +10,12 @@ TagManager:
   - CapsuleCollision
   - teleGround
   - GameManager
+<<<<<<< HEAD
   - anitTeleport
   - bounceTeleport
+=======
+  - BounceWall
+>>>>>>> c72fdbda84453a9b4ea26dcd4f3858e3125e92f0
   layers:
   - Default
   - TransparentFX
