@@ -34,32 +34,32 @@ public class PlayerMove : MonoBehaviour {
 
 	void SetTeleportPlayer( float X, float Y, float Z, GameObject otherObject  )
 	{
-		float difX = 0;
-		float difY = 0;
-		float difZ = 0;
-		if( otherObject.transform.eulerAngles.x == 90 )
-		{
-			difZ = -2.0f;
-		}
-		else if( otherObject.transform.eulerAngles.x == 270 )
-		{
-			difZ = 2.0f;
-		}
-		else if( otherObject.transform.eulerAngles.z == 90 )
-		{
-			difX = -2.0f;
-		}
-		else if( otherObject.transform.eulerAngles.z == 270 )
-		{
-			difX = 2.0f;
-		}
+		//float difX = 0;
+		//float difY = 0;
+		//float difZ = 0;
+		//if( otherObject.transform.eulerAngles.x == 90 )
+		//{
+		//	difZ = -2.0f;
+		//}
+		//else if( otherObject.transform.eulerAngles.x == 270 )
+		//{
+		//	difZ = 2.0f;
+		//}
+		//else if( otherObject.transform.eulerAngles.z == 90 )
+		//{
+		//	difX = -2.0f;
+		//}
+		//else if( otherObject.transform.eulerAngles.z == 270 )
+		//{
+		//	difX = 2.0f;
+		//}
 
-		difY = 2.17f;
+		//difY = 2.17f;
 
 		playerPosition = this.gameObject.transform.position;
-		playerPosition.x = X + difX;
-		playerPosition.y = Y + difY;
-		playerPosition.z = Z + difZ;
+		playerPosition.x = X/* + difX*/;
+		playerPosition.y = Y/* + difY*/;
+		playerPosition.z = Z/* + difZ*/;
 		this.gameObject.transform.position = playerPosition;
 	}
 
