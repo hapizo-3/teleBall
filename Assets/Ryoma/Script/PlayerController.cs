@@ -21,6 +21,5 @@ public class PlayerController : MonoBehaviour {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         rB.AddForce(x * speed, 0, z * speed, ForceMode.Impulse);
-
     }
 }
