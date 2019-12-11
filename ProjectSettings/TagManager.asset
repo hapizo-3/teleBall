@@ -10,6 +10,7 @@ TagManager:
   - CapsuleCollision
   - teleGround
   - GameManager
+  - SceneController
   layers:
   - Default
   - TransparentFX

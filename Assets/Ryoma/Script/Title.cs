@@ -10,25 +10,28 @@ public class Title : MonoBehaviour {
     public GameObject panel;
     private FadeController fadeController;
     private SceneController scenecontroller;
+    Image fadeImage;                //透明度を変更するパネルのイメージ
 
     private void Start() {
-        panel = GameObject.Find("Panel");
+        //fadeImage = GetComponent<Image>();
         fadeController = GameObject.Find("Panel").GetComponent<FadeController>();
-        scenecontroller = GameObject.Find("SceneController"). GetComponent<SceneController>();
+        //scenecontroller = GameObject.Find("SceneController"). GetComponent<SceneController>();
     }
 
     private void Update() {
-        //if (fadeController.isFadeOutEnd) {
-        //    SceneManager.LoadScene("Menu");
-        //}
+        if (fadeController.isFadeOutEnd) {          //フェードアウトが完了しているかどうか
+            scenecontroller = GameObject.Find("SceneController(Clone)").GetComponent<SceneController>();
+            scenecontroller.NextStage();            //次のステージを読みます。
+            Debug.Log("来たよ！");
+            fadeController.isFadeOutEnd = false;    //二度読み防止
+        }
     }
 
     // OnRetry関数が実行されたら、sceneを読み込む
     public void OnStart() {
-        //はやと作スクリプト
-        Debug.Log("stage01_blend");
-        //SceneManager.LoadScene("stage01");
-        scenecontroller.NextStage();
+        Debug.Log("Start");
+        //fadeController = GameObject.Find( "Panel" ).GetComponent<FadeController>();
+        fadeController.isFadeOut = true;
     }
 
     // OnSetting関数が実行されたら、sceneを読み込む
