@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aimThrowSize: 40
   keyThrowSize: 10
-  teleportParticle: {fileID: 1874252738731266, guid: cadb219a954a17c44872e4459416aaa1,
+  teleportParticle: {fileID: 1288495972106908, guid: 51399c830bd5ff64880ad89a65f1af28,
     type: 2}
 --- !u!135 &135567937651793492
 SphereCollider:

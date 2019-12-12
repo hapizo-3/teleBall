@@ -9,13 +9,14 @@ public class GameManager : MonoBehaviour {
 
     GameObject getCamera;
 	look cameraPos;
+	GlitchFx glitch;
 	Vector3 cameraPosF;
 
 	public bool wasLocked = false;
+	public bool gameGoal = false;
 
     // Use this for initialization
     void Start () {
-		//teleBallPrefab = ( GameObject )Prefab.Load( "teleBall" );
 		getCamera = GameObject.FindGameObjectWithTag( "MainCamera" );
 	}
 
@@ -55,5 +56,11 @@ public class GameManager : MonoBehaviour {
 		{
 			MouseLockCancel();
 		}
-	}
+
+		if( gameGoal == true )
+		{
+			glitch = getCamera.GetComponent<GlitchFx>();
+			glitch.intensity += 0.005f;
+		}
+	} 
 }

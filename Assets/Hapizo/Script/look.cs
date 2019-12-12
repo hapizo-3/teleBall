@@ -9,6 +9,7 @@ public class look : MonoBehaviour {
 	public float sensitivity = 0.1f;
 	public GameObject GManagerObject;
 	GameManager gManager;
+	GlitchFx glitch;
 	Vector3 roteuler;
 	public float horPlusRot;
 	public Vector3 Camerafoward;
@@ -19,6 +20,7 @@ public class look : MonoBehaviour {
 		verRot = transform.parent;
 		horRot = GetComponent<Transform>();
 		GManagerObject = GameObject.FindGameObjectWithTag( "GameManager" );
+		glitch = this.transform.GetComponent<GlitchFx>();
 	}
 
 	// Update is called once per frame
@@ -26,6 +28,7 @@ public class look : MonoBehaviour {
 	{
 		gManager = GManagerObject.GetComponent<GameManager>();
 		Camerafoward = this.gameObject.transform.position + this.gameObject.transform.forward;
+		//glitch.intensity += 0.001f;
 
 		if( gManager.wasLocked == true )
 		{
