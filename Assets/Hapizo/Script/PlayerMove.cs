@@ -21,7 +21,7 @@ public class PlayerMove : MonoBehaviour {
 	bool teleportFlag = false;
 
 	int i = 0;
-	int j = 30;
+	public int j = 30;
 
 	void Start()
 	{
