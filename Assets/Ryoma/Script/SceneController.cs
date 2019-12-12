@@ -13,6 +13,7 @@ public class SceneController : MonoBehaviour {
 
     private FadeController fadeController;
 
+
     //最初の処理
     void Start() {
         //シーンを切り替えてもこのゲームオブジェクトを削除しないようにする
@@ -22,8 +23,18 @@ public class SceneController : MonoBehaviour {
     //毎フレームの処理
     void Update() {
         //デバッグ用
+        //if (Input.GetKeyDown(KeyCode.Space)) {
+        //    if (fadeController.isFadeOutEnd) {          //フェードアウトが完了しているかどうか
+        //        NextStage();                            //次のステージを読みます。
+        //        fadeController.isFadeIn = true;
+        //        Debug.Log("来たよ！");
+        //        fadeController.isFadeOutEnd = false;    //二度読み防止
+        //    }
+        //}
         if (Input.GetKeyDown(KeyCode.Space)) {
+            fadeController = GameObject.Find("Panel").GetComponent<FadeController>();
             NextStage();
+            fadeController.isFadeOut = true;
         }
     }
 
@@ -33,6 +44,7 @@ public class SceneController : MonoBehaviour {
         Debug.Log("NextStage");
         //コルーチンを実行
         StartCoroutine(WaitForLoadScene());
+        
 
         //デバッグ用
         if (currentStageNum > 4) {

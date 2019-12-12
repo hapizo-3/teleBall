@@ -38,7 +38,7 @@ public class FadeController : MonoBehaviour {
         }
 	}
 
-    void StartFadeIn() {
+    public void StartFadeIn() {
         alfa -= fadeSpeed;              //b)不透明度を徐々に下げる
         SetAlpha();                     //c)変更した透明度をパネルに反映する
         if (alfa <= 0) {                //d)完全に透明になったら処理を抜ける

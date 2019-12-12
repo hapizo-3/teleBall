@@ -3,23 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - teleBall
-  - Ground
-  - teleportParticle
-  - CapsuleCollision
-  - teleGround
-  - GameManager
-<<<<<<< HEAD
-<<<<<<< HEAD
-  - anitTeleport
-  - bounceTeleport
-=======
-  - BounceWall
->>>>>>> c72fdbda84453a9b4ea26dcd4f3858e3125e92f0
-=======
-  - SceneController
->>>>>>> ryoma
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -29,7 +13,7 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
+  - 
   - 
   - 
   - 
