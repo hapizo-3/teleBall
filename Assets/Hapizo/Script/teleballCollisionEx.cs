@@ -75,16 +75,19 @@ public class teleballCollisionEx : MonoBehaviour {
 		float z = this.gameObject.transform.position.z;
 
 		beforeColPosition = new Vector3( x, y, z );
-		Debug.Log( this.gameObject.transform.position );
-		Debug.Log( other.gameObject.transform.position );
+		//Debug.Log( this.gameObject.transform.position );
+		//Debug.Log( other.gameObject.transform.position );
 
 		Quaternion q = Quaternion.Euler( -90f, 0f, 0f );
 
 		if( other.gameObject.tag == "Ground" )
 		{
-			pObject = playerObject.GetComponent<PlayerMove>();
+			//pObject = playerObject.GetComponent<PlayerMove>();
 			//pObject.GetTeleballPosition( x, y, z, other.gameObject );
+
 			gManager = gmObject.GetComponent<GameManager>();
+			gManager.afterTeleport = this.gameObject.transform.position;
+			Debug.Log( this.gameObject.transform.position );
 			gManager.teleMove = true;
 
 			//pObject.DisplayCollisionObject( other.gameObject );

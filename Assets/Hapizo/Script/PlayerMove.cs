@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour {
 	
 	public float speed = 15f;
+	public float teleportSpeed = 30f;
 
 	public Vector3 playerPosition;
 	Rigidbody playerRb;
@@ -26,6 +27,8 @@ public class PlayerMove : MonoBehaviour {
 	int i = 0;
 	public int j = 30;
 
+	float distance = 0;
+
 	void Start()
 	{
 		playerRb = this.transform.GetComponent<Rigidbody>();
@@ -37,15 +40,16 @@ public class PlayerMove : MonoBehaviour {
 		//var velox = speed * Input.GetAxisRaw( "Horizontal" );
 		//GetComponent<Rigidbody>().velocity = new Vector3( velox, 0f, 0f );
 		gManager = gmObject.GetComponent<GameManager>();
-		if( teleportFlag == true )
-		{
-			//SetTeleportPlayer();
-			teleportFlag = false;
-		}
 
 		if( gManager.teleMove == true )
 		{
-			this.gameObject.transform.position = Vector3.MoveTowards( gManager.beforeTelport, gManager.afterTeleport, Time.deltaTime * speed );
+			this.gameObject.transform.position = Vector3.MoveTowards( this.gameObject.transform.position, gManager.afterTeleport, Time.deltaTime * teleportSpeed );
+			distance = Vector3.Distance( this.gameObject.transform.position, gManager.afterTeleport );
+			if( distance == 0 )
+			{
+				gManager.teleMove = false;
+			}
+			Debug.Log( gManager.teleMove );
 		}
 
 	}

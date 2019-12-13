@@ -13,7 +13,10 @@ public class look : MonoBehaviour {
 	Vector3 roteuler;
 	public float horPlusRot;
 	public Vector3 Camerafoward;
-	
+
+	int teleportTime = 0;
+	float glitchSize = 0.3f;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -52,6 +55,22 @@ public class look : MonoBehaviour {
 				horRot.transform.Rotate( horPlusRot, 0, 0 );
 			}
 			horRot.transform.Rotate( Y_Rotation, 0, 0 );
+		}
+
+		if( gManager.teleMove == true )
+		{
+			if( teleportTime == 0 )
+			{
+				glitch.intensity = glitchSize;
+			}
+			teleportTime++;
+			glitch.intensity -= 0.004f;
+		}
+		else if( gManager.teleMove == false )
+		{
+			glitch.intensity = 0;
+			teleportTime = 0;
+			glitchSize = 0.2f;
 		}
 	}
 }
