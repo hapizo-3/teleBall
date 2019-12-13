@@ -83,8 +83,10 @@ public class teleballCollisionEx : MonoBehaviour {
 		if( other.gameObject.tag == "Ground" )
 		{
 			pObject = playerObject.GetComponent<PlayerMove>();
-			pObject.GetTeleballPosition( x, y, z, other.gameObject );
-			
+			//pObject.GetTeleballPosition( x, y, z, other.gameObject );
+			gManager = gmObject.GetComponent<GameManager>();
+			gManager.teleMove = true;
+
 			//pObject.DisplayCollisionObject( other.gameObject );
 
 			Instantiate( teleportParticle, new Vector3( x, y, z ), Quaternion.identity * q );

@@ -9,6 +9,9 @@ public class PlayerMove : MonoBehaviour {
 	public Vector3 playerPosition;
 	Rigidbody playerRb;
 
+	GameObject gmObject;
+	GameManager gManager;
+
 	//float nowPositionX = 0;
 	//float nowPositionY = 0;
 	//float nowPositionZ = 0;
@@ -26,20 +29,27 @@ public class PlayerMove : MonoBehaviour {
 	void Start()
 	{
 		playerRb = this.transform.GetComponent<Rigidbody>();
+		gmObject = GameObject.FindGameObjectWithTag( "GameManager" );
 		FlyPlayer();
 	}
 
 	void Update() {
 		//var velox = speed * Input.GetAxisRaw( "Horizontal" );
 		//GetComponent<Rigidbody>().velocity = new Vector3( velox, 0f, 0f );
+		gManager = gmObject.GetComponent<GameManager>();
 		if( teleportFlag == true )
 		{
 			//SetTeleportPlayer();
 			teleportFlag = false;
 		}
 
-	}
+		if( gManager.teleMove == true )
+		{
+			this.gameObject.transform.position = Vector3.MoveTowards( gManager.beforeTelport, gManager.afterTeleport, Time.deltaTime * speed );
+		}
 
+	}
+	
 	public void GetTeleballPosition( float x, float y, float z, GameObject otherObject )
 	{
 		teleBallX = x;
@@ -50,6 +60,7 @@ public class PlayerMove : MonoBehaviour {
 		
 		teleportFlag = true;
 		SetTeleportPlayer( teleBallX, teleBallY, teleBallZ, otherObject );
+		Debug.Log( "true" );
 	}
 
 	void SetTeleportPlayer( float X, float Y, float Z, GameObject otherObject  )

@@ -12,6 +12,12 @@ public class GameManager : MonoBehaviour {
 	GlitchFx glitch;
 	Vector3 cameraPosF;
 
+	public Vector3 beforeTelport;
+	public Vector3 afterTeleport;
+
+	public bool teleMove = false;
+	float speed = 1f;
+
 	public bool wasLocked = false;
 	public bool gameGoal = false;
 	public float time = 0;
