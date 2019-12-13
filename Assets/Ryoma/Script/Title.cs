@@ -11,7 +11,7 @@ public class Title : MonoBehaviour {
     private FadeController fadeController;
     private SceneController scenecontroller;
     Image fadeImage;                //透明度を変更するパネルのイメージ
-
+    
     private void Start() {
         //fadeImage = GetComponent<Image>();
         //scenecontroller = GameObject.Find("SceneController"). GetComponent<SceneController>();
@@ -21,10 +21,10 @@ public class Title : MonoBehaviour {
 
     private void Update() {
         fadeController = GameObject.Find("Panel").GetComponent<FadeController>();
-        if (fadeController.isFadeOutEnd) {          //フェードアウトが完了しているかどうか
-            scenecontroller = GameObject.Find("SceneController(Clone)").GetComponent<SceneController>();
+        if (fadeController.isFadeOutEnd && fadeController.alfa >= 1) {          //フェードアウトが完了しているかどうか
+                scenecontroller = GameObject.Find("SceneController(Clone)").GetComponent<SceneController>();
             scenecontroller.NextStage();            //次のステージを読みます。
-            fadeController.isFadeIn = true;
+            //fadeController.isFadeIn = true;
             Debug.Log("来たよ！");
             fadeController.isFadeOutEnd = false;    //二度読み防止
         }

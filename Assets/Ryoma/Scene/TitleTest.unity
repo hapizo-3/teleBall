@@ -740,6 +740,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114812474323630748, guid: c1910ba3efee12e4ead98a33e5cd87d5,
+        type: 2}
+      propertyPath: isFadeIn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114812474323630748, guid: c1910ba3efee12e4ead98a33e5cd87d5,
+        type: 2}
+      propertyPath: isFadeOutEnd
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c1910ba3efee12e4ead98a33e5cd87d5, type: 2}
   m_IsPrefabParent: 0
@@ -1282,9 +1292,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c990fe27fe38a43a665f836de9c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  red: 0
+  green: 0
+  blue: 0
+  alfa: 0
   isFadeOut: 0
-  isFadeIn: 1
-  isFadeOutEnd: 0
+  isFadeIn: 0
+  isFadeOutEnd: 1
 --- !u!114 &2011662030
 MonoBehaviour:
   m_ObjectHideFlags: 0

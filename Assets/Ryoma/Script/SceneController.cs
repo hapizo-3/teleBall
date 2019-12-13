@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneController : MonoBehaviour {
 
@@ -13,9 +14,14 @@ public class SceneController : MonoBehaviour {
 
     private FadeController fadeController;
 
+    //float red, green, blue, alfa;           //fadeControllerから取得する色
 
     //最初の処理
     void Start() {
+        //    red = fadeController.red;
+        //    green = fadeController.green;
+        //    blue = fadeController.blue;
+        //    alfa = fadeController.alfa;
         //シーンを切り替えてもこのゲームオブジェクトを削除しないようにする
         DontDestroyOnLoad(gameObject);
     }
@@ -31,20 +37,29 @@ public class SceneController : MonoBehaviour {
         //        fadeController.isFadeOutEnd = false;    //二度読み防止
         //    }
         //}
+        fadeController = GameObject.Find("Panel").GetComponent<FadeController>();
+        //デバッグ用
         if (Input.GetKeyDown(KeyCode.Space)) {
-            fadeController = GameObject.Find("Panel").GetComponent<FadeController>();
+            if (fadeController.isFadeOutEnd && fadeController.alfa != 1) {
+                Debug.Log("alfaStart");
+                fadeController.isFadeOut = true;
+            }
+        }
+        if (fadeController.isFadeOutEnd && fadeController.alfa >= 1) {
+            Debug.Log("NextStage");
             NextStage();
-            fadeController.isFadeOut = true;
+            fadeController.isFadeOutEnd = false;    //二度読み防止
         }
     }
 
     //次のステージに進む処理
     public void NextStage() {
         currentStageNum += 1;
+        // if(fadeController.isFadeIn)
         Debug.Log("NextStage");
         //コルーチンを実行
         StartCoroutine(WaitForLoadScene());
-        
+
 
         //デバッグ用
         if (currentStageNum > 4) {
