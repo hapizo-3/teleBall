@@ -11,6 +11,10 @@ public class teleballCollisionEx : MonoBehaviour {
 
 	GameObject playerObject;
 	PlayerMove pObject;
+	GlitchFx glitch;
+
+	GameObject gmObject;
+	GameManager gManager;
 
 	Vector3 CameraForward;
 
@@ -26,6 +30,7 @@ public class teleballCollisionEx : MonoBehaviour {
 		rbs = GetComponent<Rigidbody>();
 		playerObject = GameObject.FindGameObjectWithTag( "Player" );
 		Transform CameraTransform = GameObject.FindGameObjectWithTag( "MainCamera" ).transform;
+		gmObject = GameObject.FindGameObjectWithTag( "GameManager" );
 
 		if( Input.GetMouseButtonDown( 0 ) )
 		{
@@ -78,11 +83,21 @@ public class teleballCollisionEx : MonoBehaviour {
 		if( other.gameObject.tag == "Ground" )
 		{
 			pObject = playerObject.GetComponent<PlayerMove>();
-			pObject.GetTeleballPosition( x, y, z, other.gameObject );
+			//pObject.GetTeleballPosition( x, y, z, other.gameObject );
+			gManager = gmObject.GetComponent<GameManager>();
+			gManager.teleMove = true;
+
 			//pObject.DisplayCollisionObject( other.gameObject );
 
 			Instantiate( teleportParticle, new Vector3( x, y, z ), Quaternion.identity * q );
 			Destroy( this.gameObject );
+		}
+
+		if( other.gameObject.tag == "Finish" )
+		{
+			gManager = gmObject.GetComponent<GameManager>();
+			gManager.gameGoal = true;
+			
 		}
 
 	}

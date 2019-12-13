@@ -7,29 +7,60 @@ public class PlayerMove : MonoBehaviour {
 	public float speed = 15f;
 
 	public Vector3 playerPosition;
+	Rigidbody playerRb;
 
-	private float teleBallX = 0;
-	private float teleBallY = 0;
-	private float teleBallZ = 0;
-	private bool teleportFlag = false;
+	GameObject gmObject;
+	GameManager gManager;
+
+	//float nowPositionX = 0;
+	//float nowPositionY = 0;
+	//float nowPositionZ = 0;
+
+	Vector3 nowPosition;
+
+	float teleBallX = 0;
+	float teleBallY = 0;
+	float teleBallZ = 0;
+	bool teleportFlag = false;
+
+	int i = 0;
+	public int j = 30;
+
+	void Start()
+	{
+		playerRb = this.transform.GetComponent<Rigidbody>();
+		gmObject = GameObject.FindGameObjectWithTag( "GameManager" );
+		FlyPlayer();
+	}
 
 	void Update() {
 		//var velox = speed * Input.GetAxisRaw( "Horizontal" );
 		//GetComponent<Rigidbody>().velocity = new Vector3( velox, 0f, 0f );
+		gManager = gmObject.GetComponent<GameManager>();
 		if( teleportFlag == true )
 		{
 			//SetTeleportPlayer();
 			teleportFlag = false;
 		}
-	}
 
+		if( gManager.teleMove == true )
+		{
+			this.gameObject.transform.position = Vector3.MoveTowards( gManager.beforeTelport, gManager.afterTeleport, Time.deltaTime * speed );
+		}
+
+	}
+	
 	public void GetTeleballPosition( float x, float y, float z, GameObject otherObject )
 	{
 		teleBallX = x;
 		teleBallY = y;
 		teleBallZ = z;
+
+		nowPosition = this.gameObject.transform.position;
+		
 		teleportFlag = true;
 		SetTeleportPlayer( teleBallX, teleBallY, teleBallZ, otherObject );
+		Debug.Log( "true" );
 	}
 
 	void SetTeleportPlayer( float X, float Y, float Z, GameObject otherObject  )
@@ -73,6 +104,25 @@ public class PlayerMove : MonoBehaviour {
 	public void DisplayCollisionObject( GameObject otherObject )
 	{
 		Debug.Log( otherObject.transform.eulerAngles );
+	}
+
+	void FlyPlayer()
+	{
+
+		//playerRb.velocity = new Vector3( 20, 0, 0 );
+
+	}
+
+	void FreezeCancel()
+	{
+		playerRb.constraints = RigidbodyConstraints.None;
+		playerRb.constraints = RigidbodyConstraints.FreezeRotation;
+	}
+
+	void FreezeApply()
+	{
+		playerRb.constraints = RigidbodyConstraints.FreezePositionX;
+		playerRb.constraints = RigidbodyConstraints.FreezePositionZ;
 	}
 
 }
