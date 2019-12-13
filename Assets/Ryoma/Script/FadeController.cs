@@ -11,7 +11,7 @@ public class FadeController : MonoBehaviour {
     float red, green, blue, alfa;   //パネルの色、不透明度を管理
 
     public bool isFadeOut = false;  //フェードアウト処理の開始、完了を管理するフラグ
-    public bool isFadeIn = true;   //フェードイン処理の開始、完了を管理するフラグ
+    public bool isFadeIn = false;   //フェードイン処理の開始、完了を管理するフラグ
 
     public bool isFadeOutEnd = false;
     
@@ -39,20 +39,19 @@ public class FadeController : MonoBehaviour {
 	}
 
     void StartFadeIn() {
-        alfa -= fadeSpeed;
-        SetAlpha();
-        if(alfa <= 0) {
-            isFadeIn = false;
+        alfa -= fadeSpeed;              //b)不透明度を徐々に下げる
+        SetAlpha();                     //c)変更した透明度をパネルに反映する
+        if (alfa <= 0) {                //d)完全に透明になったら処理を抜ける
+            isFadeIn = false;           //a)パネルの表示をオフにする
             fadeImage.enabled = false;
         }
-
     }
 
-    void StartFadeOut() {
+    public void StartFadeOut() {
         fadeImage.enabled = true;       //a)パネルの表示をオンにする
         alfa += fadeSpeed;              //b)不透明度を徐々に上げる
         SetAlpha();                     //c)変更した透明度をパネルに反映する
-        if(alfa >= 1) {                 //d)完全に不透明になったら処理を抜ける
+        if (alfa >= 1) {                //d)完全に不透明になったら処理を抜ける
             isFadeOut = false;
             isFadeOutEnd = true;
         }
