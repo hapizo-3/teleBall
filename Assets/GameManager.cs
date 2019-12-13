@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
 
 	public bool wasLocked = false;
 	public bool gameGoal = false;
+	public float time = 0;
 
     // Use this for initialization
     void Start () {
@@ -44,7 +45,6 @@ public class GameManager : MonoBehaviour {
 
 			Vector3 tmp = GameObject.FindGameObjectWithTag( "Player" ).transform.position;
 			Instantiate( teleBall, new Vector3( cameraPosF.x, cameraPosF.y, cameraPosF.z ), Quaternion.identity );
-			//Debug.Log( "Instantiate : " + Time.frameCount );
 		}
 
 		if( wasLocked == false && Input.GetMouseButtonDown( 0 ) )
@@ -59,8 +59,12 @@ public class GameManager : MonoBehaviour {
 
 		if( gameGoal == true )
 		{
-			glitch = getCamera.GetComponent<GlitchFx>();
-			glitch.intensity += 0.005f;
+			time += Time.deltaTime;
+			if( time >= 1.0f )
+			{
+				glitch = getCamera.GetComponent<GlitchFx>();
+				glitch.intensity += 0.001f;
+			}
 		}
 	} 
 }

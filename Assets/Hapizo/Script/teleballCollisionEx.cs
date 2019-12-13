@@ -30,7 +30,7 @@ public class teleballCollisionEx : MonoBehaviour {
 		rbs = GetComponent<Rigidbody>();
 		playerObject = GameObject.FindGameObjectWithTag( "Player" );
 		Transform CameraTransform = GameObject.FindGameObjectWithTag( "MainCamera" ).transform;
-		gmObject = GameObject.FindGameObjectWithTag( "Finish" );
+		gmObject = GameObject.FindGameObjectWithTag( "GameManager" );
 
 		if( Input.GetMouseButtonDown( 0 ) )
 		{
@@ -94,7 +94,7 @@ public class teleballCollisionEx : MonoBehaviour {
 		if( other.gameObject.tag == "Finish" )
 		{
 			gManager = gmObject.GetComponent<GameManager>();
-			//gManager.gameGoal = true;
+			gManager.gameGoal = true;
 			
 		}
 
