@@ -92,7 +92,7 @@ public class teleballCollisionEx : MonoBehaviour {
 
 			//pObject.DisplayCollisionObject( other.gameObject );
 
-			Instantiate( teleportParticle, new Vector3( x, y, z ), Quaternion.identity * q );
+			//Instantiate( teleportParticle, new Vector3( x, y, z ), Quaternion.identity * q );
 			Destroy( this.gameObject );
 		}
 
