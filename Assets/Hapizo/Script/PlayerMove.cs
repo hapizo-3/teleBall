@@ -15,10 +15,6 @@ public class PlayerMove : MonoBehaviour {
 
 	Collider Pcollider;
 
-	//float nowPositionX = 0;
-	//float nowPositionY = 0;
-	//float nowPositionZ = 0;
-
 	Vector3 nowPosition;
 
 	[SerializeField] GameObject teleportParticle;
