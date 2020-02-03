@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour {
 			cameraPosF = cameraPos.Camerafoward;
 
 			Vector3 tmp = GameObject.FindGameObjectWithTag( "Player" ).transform.position;
+			Debug.Log( tmp );
+			beforeTelport = tmp;
 			Instantiate( teleBall, new Vector3( cameraPosF.x, cameraPosF.y, cameraPosF.z ), Quaternion.identity );
 		}
 
