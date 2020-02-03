@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour {
 	
 	public float speed = 15f;
+	public float teleportSpeed = 30f;
 
 	public Vector3 playerPosition;
 	Rigidbody playerRb;
@@ -12,11 +13,12 @@ public class PlayerMove : MonoBehaviour {
 	GameObject gmObject;
 	GameManager gManager;
 
-	//float nowPositionX = 0;
-	//float nowPositionY = 0;
-	//float nowPositionZ = 0;
+	Collider Pcollider;
 
 	Vector3 nowPosition;
+
+	[SerializeField] GameObject teleportParticle;
+	Quaternion q = Quaternion.Euler( -90f, 0f, 0f );
 
 	float teleBallX = 0;
 	float teleBallY = 0;
@@ -25,6 +27,8 @@ public class PlayerMove : MonoBehaviour {
 
 	int i = 0;
 	public int j = 30;
+
+	float distance = 0;
 
 	void Start()
 	{
@@ -37,15 +41,21 @@ public class PlayerMove : MonoBehaviour {
 		//var velox = speed * Input.GetAxisRaw( "Horizontal" );
 		//GetComponent<Rigidbody>().velocity = new Vector3( velox, 0f, 0f );
 		gManager = gmObject.GetComponent<GameManager>();
-		if( teleportFlag == true )
-		{
-			//SetTeleportPlayer();
-			teleportFlag = false;
-		}
 
 		if( gManager.teleMove == true )
 		{
-			this.gameObject.transform.position = Vector3.MoveTowards( gManager.beforeTelport, gManager.afterTeleport, Time.deltaTime * speed );
+			GetComponent<Collider>().enabled = false;
+			this.gameObject.transform.position = Vector3.MoveTowards( this.gameObject.transform.position, gManager.afterTeleport, Time.deltaTime * teleportSpeed );
+			distance = Vector3.Distance( this.gameObject.transform.position, gManager.afterTeleport );
+			if( distance == 0 )
+			{
+				gManager.teleMove = false;
+				//GetComponent<Collider>().enabled = false;
+				GetComponent<Collider>().enabled = true;
+
+				Instantiate( teleportParticle, new Vector3( this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z ), Quaternion.identity * q );
+			}
+			Debug.Log( gManager.teleMove );
 		}
 
 	}
@@ -70,11 +80,11 @@ public class PlayerMove : MonoBehaviour {
 		float difZ = 0;
 		if( otherObject.transform.eulerAngles.x == 90 )
 		{
-			difZ = -2.0f;
+			difZ = -4.0f;
 		}
 		else if( otherObject.transform.eulerAngles.x == 270 )
 		{
-			difZ = 2.0f;
+			difZ = 10.0f;
 		}
 		else if( otherObject.transform.eulerAngles.z == 90 )
 		{
