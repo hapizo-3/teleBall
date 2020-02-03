@@ -24,48 +24,23 @@ public class teleballCollisionEx : MonoBehaviour {
 
 	private Vector3 beforeColPosition;
 
+	Vector3 beforeBallPosition = new Vector3( 0, 0, 0 );
+
 	// Use this for initialization
 	void Start () {
 		//Debug.Log( "teleballStart : " + Time.frameCount );
 		rbs = GetComponent<Rigidbody>();
 		playerObject = GameObject.FindGameObjectWithTag( "Player" );
-		Transform CameraTransform = GameObject.FindGameObjectWithTag( "MainCamera" ).transform;
 		gmObject = GameObject.FindGameObjectWithTag( "GameManager" );
 
-		if( Input.GetMouseButtonDown( 0 ) )
-		{
-			CameraForward = CameraTransform.transform.forward;
-			throwSize = aimThrowSize;
-		} 
-		else if( Input.GetKeyDown( KeyCode.A ) )
-		{
-			CameraForward = -CameraTransform.transform.right;
-			throwSize = keyThrowSize;
-		} 
-		else if( Input.GetKeyDown( KeyCode.D ) )
-		{
-			CameraForward = CameraTransform.transform.right;
-			throwSize = keyThrowSize;
-		} 
-		else if( Input.GetKeyDown( KeyCode.S ) )
-		{
-			CameraForward = -CameraTransform.transform.forward;
-			throwSize = keyThrowSize;
-		}
-
-		CameraForward.x *= throwSize;
-		CameraForward.y *= throwSize;
-		CameraForward.z *= throwSize;
-
-		//投げる処理
-		rbs.AddForce( CameraForward.x, CameraForward.y, CameraForward.z, ForceMode.Impulse );
-		throwSize = 0;
+		addPower();
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		//ボールの前座標を取得
+		beforeBallPosition = GetComponent<Transform>().position;
 	}
 
 	void OnCollisionEnter( Collision other )
@@ -75,8 +50,6 @@ public class teleballCollisionEx : MonoBehaviour {
 		float z = this.gameObject.transform.position.z;
 
 		beforeColPosition = new Vector3( x, y, z );
-		//Debug.Log( this.gameObject.transform.position );
-		//Debug.Log( other.gameObject.transform.position );
 
 		Quaternion q = Quaternion.Euler( -90f, 0f, 0f );
 
@@ -90,8 +63,6 @@ public class teleballCollisionEx : MonoBehaviour {
 			Debug.Log( this.gameObject.transform.position );
 			gManager.teleMove = true;
 
-			//pObject.DisplayCollisionObject( other.gameObject );
-
 			//Instantiate( teleportParticle, new Vector3( x, y, z ), Quaternion.identity * q );
 			Destroy( this.gameObject );
 		}
@@ -103,5 +74,46 @@ public class teleballCollisionEx : MonoBehaviour {
 			
 		}
 
+		if( other.gameObject.tag == "ballDestroy" )
+		{
+			Destroy( this.gameObject );
+			Debug.Log( "2" );
+		}
+
 	}
+
+	void addPower()
+	{
+		Transform CameraTransform = GameObject.FindGameObjectWithTag( "MainCamera" ).transform;
+
+		if( Input.GetMouseButtonDown( 0 ) )
+		{
+			CameraForward = CameraTransform.transform.forward;
+			throwSize = aimThrowSize;
+		}
+		else if( Input.GetKeyDown( KeyCode.A ) )
+		{
+			CameraForward = -CameraTransform.transform.right;
+			throwSize = keyThrowSize;
+		}
+		else if( Input.GetKeyDown( KeyCode.D ) )
+		{
+			CameraForward = CameraTransform.transform.right;
+			throwSize = keyThrowSize;
+		}
+		else if( Input.GetKeyDown( KeyCode.S ) )
+		{
+			CameraForward = -CameraTransform.transform.forward;
+			throwSize = keyThrowSize;
+		}
+
+		CameraForward.x *= throwSize;
+		CameraForward.y *= throwSize;
+		CameraForward.z *= throwSize;
+
+		//投げる処理
+		rbs.AddForce( CameraForward.x, CameraForward.y, CameraForward.z, ForceMode.Impulse );
+		throwSize = 0;
+	}
+
 }

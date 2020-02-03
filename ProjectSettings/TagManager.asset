@@ -9,6 +9,7 @@ TagManager:
   - teleportParticle
   - Ground
   - anitTeleport
+  - ballDestroy
   layers:
   - Default
   - TransparentFX

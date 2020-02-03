@@ -38,8 +38,6 @@ public class PlayerMove : MonoBehaviour {
 	}
 
 	void Update() {
-		//var velox = speed * Input.GetAxisRaw( "Horizontal" );
-		//GetComponent<Rigidbody>().velocity = new Vector3( velox, 0f, 0f );
 		gManager = gmObject.GetComponent<GameManager>();
 
 		if( gManager.teleMove == true )
@@ -50,14 +48,12 @@ public class PlayerMove : MonoBehaviour {
 			if( distance == 0 )
 			{
 				gManager.teleMove = false;
-				//GetComponent<Collider>().enabled = false;
 				GetComponent<Collider>().enabled = true;
 
 				Instantiate( teleportParticle, new Vector3( this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z ), Quaternion.identity * q );
 			}
 			Debug.Log( gManager.teleMove );
 		}
-
 	}
 	
 	public void GetTeleballPosition( float x, float y, float z, GameObject otherObject )
