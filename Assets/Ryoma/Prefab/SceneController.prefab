@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageName:
   - TitleTest
-  - stage01
-  - stage02
-  - stage03
-  - stage04
+  - stage1
+  - stage2
+  - stage3
+  - stage4

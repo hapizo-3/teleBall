@@ -6,26 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
-    path: Assets/Ryoma/Scene/Title.unity
-    guid: 481ed3e22bb008d49834f3bd30f0381a
-  - enabled: 1
-    path: Assets/Ryoma/Scene/Menu.unity
-    guid: 5f2965ba1ef2cd34d96d9cc275e5e1a2
-  - enabled: 1
     path: Assets/Ryoma/Scene/TitleTest.unity
     guid: 3b984a755ed656f438a82fdf5fc7b9fe
   - enabled: 1
-    path: Assets/Ryoma/Scene/stage01.unity
-    guid: 97a1cca6b00b441419f931a4bf235ea7
+    path: Assets/Hikka/Scene/stage1.unity
+    guid: 8114b5ef35567144fb1fbf631397c06c
   - enabled: 1
-    path: Assets/Ryoma/Scene/stage02.unity
-    guid: 97bef2c93b9e226478254167ad83ef29
+    path: Assets/Hikka/Scene/stage2.unity
+    guid: 76c55541eb1972d4b96d1119c9b6b310
   - enabled: 1
-    path: Assets/Ryoma/Scene/stage03.unity
-    guid: 8d7ef35f409bd0947a6257553db858f6
+    path: Assets/Hikka/Scene/stage3.unity
+    guid: 83edc860ee2774d4f9257f364e1fa56b
   - enabled: 1
     path: Assets/Ryoma/Scene/stage04.unity
     guid: dddf24bce35d16743b329c7d8df1afa6
